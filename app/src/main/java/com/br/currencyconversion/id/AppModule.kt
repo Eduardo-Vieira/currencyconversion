@@ -2,6 +2,7 @@ package com.br.currencyconversion.id
 
 import androidx.room.Room
 import com.br.currencyconversion.database.AppDatabase
+import com.br.currencyconversion.database.AppSharedPreferences
 import com.br.currencyconversion.network.AuthInterceptor
 import com.br.currencyconversion.network.provideExchangeratesapi
 import com.br.currencyconversion.network.provideOkHttpClient
@@ -19,6 +20,8 @@ val appModule = module {
 
     factory{ CurrencyConversionRepository(get(),get())}
     factory { HistoricRepository(get()) }
+
+    single { AppSharedPreferences() }
 }
 
 val viewModelModule = module {

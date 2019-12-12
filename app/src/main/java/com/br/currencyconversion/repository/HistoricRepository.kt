@@ -5,5 +5,5 @@ import com.br.currencyconversion.database.model.Historic
 
 class HistoricRepository(private val local: HistoricDao) {
 
-    suspend fun getHistoricLocal(): List<Historic> = local.getHistoricLocal()
+    suspend fun getHistoricLocal(query:String?): List<Historic> = local.getHistoricLocal(query)
 }

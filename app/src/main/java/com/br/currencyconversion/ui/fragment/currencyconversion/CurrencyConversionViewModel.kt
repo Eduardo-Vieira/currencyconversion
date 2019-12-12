@@ -15,23 +15,32 @@ class CurrencyConversionViewModel(
 
     val ratesKey = MutableLiveData<List<String>>()
     val ratesValue:MutableList<String> = mutableListOf()
+    val erro = MutableLiveData<String>()
 
     fun getLatest(){
-        viewModelScope.launch {
-            val latest = withContext(Dispatchers.IO) {
-                repository.getLatest()
-            }
+        try {
+            viewModelScope.launch {
+                val latest = withContext(Dispatchers.IO) {
+                    repository.getLatest()
+                }
 
-            latest.rates?.also {
-                ratesKey.postValue(it.keys.toMutableList())
-                ratesValue.addAll(it.values.toMutableList())
-            }
+                latest.rates?.also {
+                    ratesKey.postValue(it.keys.toMutableList())
+                    ratesValue.addAll(it.values.toMutableList())
+                }
 
+            }
+        }catch (e: Throwable){
+            erro.value = e.message
         }
     }
 
     fun getRatesValue(position: Int):String {
         return ratesValue[position]
+    }
+
+    fun getRatesKey(position: Int):String {
+        return ratesKey.value?.get(position).toString()
     }
 
     fun insertHistoricLocal(historic: Historic){

@@ -14,4 +14,13 @@
     <string name="default_decimal_value">0.0</string>
     <string name="default_text_blank">Null Text</string>
 
+    <string name="str_userInputText">Username ou E-mail</string>
+    <string name="str_pwdInputText">Password</string>
+    <string name="str_btn_logIn">Login In</string>
+    <string name="str_txtOr">Or</string>
+
+    <string name="str_logIn_Facebook">LOGIN WITH FACEBOOK</string>
+    <string name="str_logIn_Twitter">LOGIN WITH TWITTER</string>
+    <string name="str_logIn_Google">LOGIN WITH GOOGLE</string>
+
 </resources>

@@ -9,7 +9,7 @@ import java.math.BigDecimal
 data class Historic(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Long? = 0,
+    val id: Long?,
     @ColumnInfo(name = "current_currency")
     val currentCurrency: String? = null,
     @ColumnInfo(name = "current_currency_value")

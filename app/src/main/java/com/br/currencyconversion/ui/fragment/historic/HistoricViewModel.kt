@@ -13,10 +13,11 @@ class HistoricViewModel(private val repository: HistoricRepository):ViewModel() 
 
     var historicList = MutableLiveData<List<Historic>>()
 
-    fun getHistoricList(){
+    fun getHistoricList(query:String?){
+        val mQuery = if (query != null) query else "%"
         viewModelScope.launch {
             val mHistoricLocal = withContext(Dispatchers.IO) {
-                repository.getHistoricLocal()
+                repository.getHistoricLocal("%${mQuery}%")
             }
             historicList.value = mHistoricLocal
         }

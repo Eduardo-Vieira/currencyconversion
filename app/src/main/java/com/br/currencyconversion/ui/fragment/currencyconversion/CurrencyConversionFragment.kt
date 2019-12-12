@@ -6,7 +6,9 @@ import android.view.*
 import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 
 import com.br.currencyconversion.R
@@ -19,6 +21,8 @@ class CurrencyConversionFragment : Fragment() {
     private val currencyConversionViewModel:CurrencyConversionViewModel by viewModel()
 
     private var baseConversion:Double = 0.0
+    private var labelCurrent:String? = null
+    private var labelConversion:String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,21 +76,25 @@ class CurrencyConversionFragment : Fragment() {
         currencyConversionViewModel.ratesKey.observe(viewLifecycleOwner, Observer {
             configSpinner(it)
         })
+        currencyConversionViewModel.erro.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(this.context!!,it,Toast.LENGTH_LONG).show()
+        })
     }
 
     private fun spOnItemSelected(){
-//        sp_current_currency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(parent: AdapterView<*>?) {}
-//
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                baseConversion = currencyConversionViewModel.getRatesValue(position).toDouble()
-//            }
-//
-//        }
+        sp_current_currency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                labelCurrent = currencyConversionViewModel.getRatesKey(position)
+            }
+
+        }
         sp_currency_converter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                labelConversion = currencyConversionViewModel.getRatesKey(position)
                 baseConversion = currencyConversionViewModel.getRatesValue(position).toDouble()
             }
 
@@ -96,15 +104,17 @@ class CurrencyConversionFragment : Fragment() {
     private fun converterOnClick(){
         btn_converter.setOnClickListener {
             val currencyConverterValue:Double = input_currency_converter_value.text.toString().toDouble()
+            val currentCurrencyValue:Double = input_current_currency_value.text.toString().toDouble()
+
             val calc = currencyConverterValue * baseConversion
             input_currency_converter_value.setText(calc.toString())
 
-//            currencyConversionViewModel.insertHistoricLocal(Historic(0,
-//                    input_current_currency_value.text.toString(),
-//                    currencyConverterValue.toBigDecimal(),
-//
-//                ))
-
+            currencyConversionViewModel.insertHistoricLocal(Historic(null,
+                labelCurrent,
+                currentCurrencyValue.toBigDecimal(),
+                labelConversion,
+                currencyConverterValue.toBigDecimal()
+                ))
         }
     }
 
