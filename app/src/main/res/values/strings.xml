@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Currency Conversion</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="current_currency">TIPO MOEDA</string>
+    <string name="currency_converter">MOEDA DESEJADA</string>
+
+    <string name="current_currency_value">VALOR</string>
+    <string name="currency_converter_value">VALOR CONVETIDO</string>
+    <string name="btn_converter">CONVERTER</string>
+
+    <string name="default_decimal_value">0.0</string>
+    <string name="default_text_blank">Null Text</string>
+
+</resources>

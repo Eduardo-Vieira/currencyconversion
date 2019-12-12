@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/currencyConversionLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingTop="32dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".ui.fragment.currencyconversion.CurrencyConversionFragment">
+
+
+    <TextView
+        android:id="@+id/lbl_current_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/current_currency" />
+
+    <Spinner
+        android:id="@+id/sp_current_currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/lbl_current_currency_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/current_currency_value" />
+
+    <EditText
+        android:id="@+id/input_current_currency_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/default_decimal_value"
+        android:inputType="numberDecimal"
+        android:text="@string/default_decimal_value" />
+
+    <TextView
+        android:id="@+id/lbl_currency_converter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currency_converter" />
+
+    <Spinner
+        android:id="@+id/sp_currency_converter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/lbl_currency_converter_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/currency_converter_value" />
+
+    <EditText
+        android:id="@+id/input_currency_converter_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="@string/default_decimal_value" />
+
+    <Button
+        android:id="@+id/btn_converter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_converter" />
+
+</LinearLayout>
